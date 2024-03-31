@@ -53,3 +53,56 @@
 //	printf("%u\n", a);
 //	return 0;
 //}
+
+//#include<windows.h>
+//int main()
+//{
+//	unsigned int i;
+//	for (i = 9; i >= 0; i--)//死循环：i为一个无符号数，一定>=0，所以for循环始终满足条件
+//	{
+//		printf("%u\n", i);
+//		Sleep(100);
+//	}
+//	return 0;
+//}
+
+//int main()
+//{
+//	char a[1000];
+//	int i;
+//	for (i=0;i<1000;i++)
+//	{
+//		a[i] = -1 - i;//从-1开始，逆时针到-128，再到0之前结束
+//	}
+//	printf("%d\n", strlen(a));//255=127+128
+//	return 0;
+//}
+
+//int main()
+//{
+//	int n = 9;
+//	float* pfloat = (float*)&n;
+//	printf("n值为:%d\n", n);
+//	printf("pfloat值为:%lf\n", *pfloat);
+//
+//	*pfloat = 9.0;
+//	printf("n值为:%d\n", n);
+//	printf("pfloat值为:%lf\n", *pfloat);
+//}
+
+int main()
+{
+	float a = 5.5;
+	//101.1
+	//(-1)^0 * 1.011 * 2^2
+	//(-1)^s * M * 2^E
+	// s = 0
+	// M = 1.011
+	// E = 2
+	// 在内存中
+	//0 10000001 01100000000000000000000
+	// s   E+127    M-1并补后
+	//0100 0000 1011 0000 0000 0000 0000 0000
+	//0x40b00000
+	//
+}
