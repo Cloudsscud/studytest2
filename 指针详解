@@ -1,1 +1,38 @@
 2024/04/01
+
+int main()
+{
+	/*char ch = 'w';
+	char* pc = &ch;
+	printf("%c\n", *pc);*/
+
+	/*char arr[] = "abcdef";
+	char* pc = arr;
+	printf("%s\n", arr);
+	printf("%s\n", pc);*/
+
+	//char* p = "abcdef";//指针变量p存的是'a'	"abcdef"为一个常量字符串,不能被修改
+	////*p = 'W';
+	//printf("%c\n", *p);
+	//printf("%c\n", *p+1);
+	//printf("%c\n", *p+3);
+	//printf("%s\n", p);
+
+	char arr1[] = "abcdef";
+	char arr2[] = "abcdef";
+	char* p1 = "abcdef";
+	char* p2 = "abcdef";
+	if (arr1 == arr2)
+		printf("same\n");
+	else
+		printf("not same\n");//not
+
+	if (p1 == p2)
+		printf("same\n");//yes
+	else
+		printf("not same\n");
+	//结果说明：即使两个数组内部元素完全相同，这两个数组也不相同；
+	//如果两个指针变量指向同一个常量字符串，那么这两个指针变量相同
+
+	return 0;
+}
