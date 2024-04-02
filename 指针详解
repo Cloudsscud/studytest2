@@ -36,3 +36,49 @@ int main()
 
 	return 0;
 }
+int main()
+{
+	////数组指针尝试
+	//int arr1[] = { 1,2,3 };
+	//int arr2[] = { 4,5,6 };
+	//int arr3[] = { 7,8,9 };
+	//int* parr[] = { arr1,arr2,arr3 };//一个数组指针
+
+	/*int i = 0;
+	for (i = 0; i < 3; i++)
+	{
+		int j = 0;
+		for (j = 0; j < 3; j++)
+		{
+			printf("%d ", *parr[i]+j);
+		}
+		printf("\n");
+	}*/
+
+	////尝试用指针数组 套 数组指针
+	//int xuehao[] = { 7,5,3 };
+	//int chengji[] = { 123,112,89 };
+	//int nianling[] = { 13,12,13 };
+	//int* xuesheng_gradelist[] = { xuehao,chengji,nianling };
+	// 
+	//int* changshi[] = { parr,xuesheng_gradelist };//看似是可行的
+
+	////尝试输出 每个数组指针 内部数组的 元素
+	//int i = 0;
+	//for (i = 0; i < 2; i++)//有两个数组指针
+	//{
+	//	int j = 0;
+	//	for (j = 0; j < 3; j++)//每个数组指针有三个数组
+	//	{
+	//		int z = 0;
+	//		for (z = 0; z < 1; z++)//每个数组有三个元素
+	//		{
+	//			printf("%d ", *(*changshi[i]+j)+z);	//失败：不知道如何表示一个数组内部的某个元素
+	//												//*changshi[i]+j正常应该使其表示一个指针数组
+	//		}
+	//		printf("\n");
+	//	}
+	//}
+
+	return 0;
+}
