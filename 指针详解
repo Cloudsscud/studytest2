@@ -124,3 +124,39 @@ int main()
 
 	return 0;
 }
+
+//void test(int arr1[])
+//{}
+//void test1(int arr1)
+//{}
+//void test2(int *arr1)
+//{}
+
+//void test_1(int* arr2[])
+//{}
+//void test_2(int* *arr2)//*arr2是该指针数组首元素（首指针）,该首指针的类型为int*
+//{}
+//
+//int main() 
+//{
+//	int arr1[10] = { 0 };
+//	int* arr2[20] = { 0 };//存放指针的数组，存放的指针类型为int*
+//	/*test(arr1);
+//	test1(arr1);
+//	test2(arr1);*/
+// 
+//	test_1(arr2);
+//	test_2(arr2);//arr2是该指针数组 首元素（首指针）的地址
+//}
+
+//void test(int arr[][4])//二维数组传参数时可以省略行，但不能省略列
+//{}
+//void test1(int (*arr)[4])//（*arr）为二维数组的第一行数组，[4]说明该第一行数组有四个int类型的元素,即四列元素
+//{}
+//
+//int main()
+//{
+//	int arr[3][4] = { {1,2,3,4},{5,6,7,8},{9,10,11,12} };
+//	test(arr);//二维数组名arr即为第一行数组{1,2,3,4}的地址
+//	test1(arr);
+//}
