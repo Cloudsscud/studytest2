@@ -259,3 +259,113 @@ int main()
 //	char* (*pfArr[4])(char*, const char*) = {my_strcpy};
 //	return 0;
 //}
+
+////计算器
+//#include<stdio.h>
+//void menu()
+//{
+//	printf("************************\n");
+//	printf("** 1、Add      2、Sub **\n");
+//	printf("** 3、Mul      4、Div **\n");
+//	printf("** 5、Xor      0、exit**\n");
+//	printf("************************\n");
+//}
+//
+//int Add(int x, int y)
+//{
+//	return x + y;
+//}
+//int Sub(int x, int y)
+//{
+//	return x - y;
+//}
+//int Mul(int x, int y)
+//{
+//	return x * y;
+//}
+//int Div(int x, int y)
+//{
+//	return x / y;
+//}
+//int Xor(int x, int y)
+//{
+//	return x ^ y;
+//}
+////Add等几个函数称作回调函数
+//void Calc(int *pf(int,int))
+//{
+//	int x, y;
+//	printf("请输入运算的两个数字:> ");
+//	scanf("%d%d", &x, &y);
+//	printf("%d\n", pf(x, y));
+//}
+//
+//int main()
+//{
+//	////用函数指针数组 -- 转移表
+//	//int x, y;
+//	//int input = 0;
+//	//int (*pfArr[])(int, int) = { 0,Add,Sub,Mul,Div,Xor };
+//	//do
+//	//{
+//	//	menu();
+//	//	printf("请选择方式:> ");
+//	//	scanf("%d", &input);
+//	//	if (input >= 1 && input <= 5)
+//	//	{
+//	//		printf("请输入运算的两个数字:> ");
+//	//		scanf("%d%d", &x, &y);
+//	//		printf("%d\n", pfArr[input](x, y));
+//	//	}
+//	//	else if (input == 0)
+//	//	{
+//	//		printf("退出程序\n");
+//	//	}
+//	//	else
+//	//		printf("请重新输入\n");
+//	//} while (input);
+//
+//	int input;
+//	do
+//	{
+//		menu();
+//		printf("请选择一种方式\n");
+//		scanf("%d", &input);
+//
+//		switch (input)
+//		{
+//		case 1:
+//			Calc(Add);
+//			break;
+//		case 2:
+//			Calc(Sub);
+//			break;
+//		case 3:
+//			Calc(Mul);
+//			break;
+//		case 4:
+//			Calc(Div);
+//		case 5:
+//			Calc(Xor);
+//			break;
+//		case 0:
+//			printf("退出程序\n");
+//			break;
+//		default:
+//			printf("请重新选择方式\n");
+//			break;
+//		}
+//	} while (input);
+//	
+//	return 0;
+//}
+
+//int main()
+//{
+//	int arr[10] = { 0 };
+//	int (*p)[10] = &arr;//p为一个数组指针
+//	int (*pfarr[4])(int, int);//pfarr为一个函数指针数组
+//	int (*(*ppfarr)[4])(int, int) = &pfarr;//ppfarr为一个指针，指向 含有四个元素的数组（数组的每个元素为函数指针int(*)(int,int)）
+//	//即ppfarr为一个指向函数指针数组的指针
+//	return 0;
+//}
