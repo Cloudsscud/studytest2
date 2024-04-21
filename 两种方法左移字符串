@@ -1,0 +1,61 @@
+//#include<string.h>
+//#include<assert.h>
+////左移字符串，（字符串地址，左移次数）
+//void left_move(char* arr,int k)
+//{
+//	assert(arr);
+//	int len = strlen(arr);
+//	int i = 0;
+//	for (i = 0; i < k; i++)//k次
+//	{
+//		//一次左移
+//		char tmp = *arr;
+//		int j = 0;
+//		for (j = 0; j < len - 1; j++)
+//		{
+//			*(arr + j) = *(arr + j + 1);
+//		}
+//		*(arr + len - 1) = tmp;
+//	}
+//}
+
+//三步逆序法
+#include<assert.h>
+#include<string.h>
+//逆序的起始地址，终止地址
+void reserve(char* left,char* right)
+{
+	assert(left);
+	assert(right);
+	while (left < right)
+	{
+		char tmp = *left;
+		*left = *right;
+		*right = tmp;
+		left++;
+		right--;
+	}
+}
+
+void left_move(char* arr,int k )
+{
+	assert(arr);
+	int len = strlen(arr);
+	while(k > len)
+	{
+		k = k - len;
+	}
+	reserve(arr,arr+k-1);//逆序左侧
+	reserve(arr+k,arr+len-1);//逆序右侧
+	reserve(arr,arr+len-1);//逆序整体
+}
+
+int main()
+{
+	//左移字符串
+	char arr[] = "abcdefg";
+	left_move(arr, 15);
+
+	printf("%s\n", arr);
+	return 0;
+}
