@@ -50,12 +50,33 @@ void left_move(char* arr,int k )
 	reserve(arr,arr+len-1);//逆序整体
 }
 
+int is_left_move(char* arr1, char* arr2)
+{
+	int i = 0;
+	int len = strlen(arr1);
+	for (i == 0; i < len; i++)
+	{
+		left_move(arr1, 1);
+		if (strcmp(arr1,arr2)==0)
+			return 1;
+	}
+	return 0;
+}
+
 int main()
 {
 	//左移字符串
 	char arr[] = "abcdefg";
 	left_move(arr, 15);
-
 	printf("%s\n", arr);
+
+	//判断两个字符串是否是左移得来的
+	char arr1[] = "abcdefg";
+	char arr2[] = "bcdefga";
+	int ret = is_left_move(arr1, arr2);
+	if (ret == 1)
+		printf("Yes\n");
+	else
+		printf("No\n");
 	return 0;
 }
