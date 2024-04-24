@@ -1,1 +1,46 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<assert.h>
+//char* my_strcpy(char* dest, const char* src)
+//{
+//	assert(dest && src);
+//	char* ret = dest;
+//	//将arr2中的所有字符全部拷贝到arr1,包括'\0'
+//	while (*dest++ = *src++)
+//	{
+//		;
+//	}
+//	return ret;//返回拷贝目的地地址
+//}
+//int main()
+//{
+//	char arr1 = "abcdef";
+//	char arr2 = "found";
+//	my_strcpy(arr1, arr2);//将arr2拷贝并替换到arr1中
+//	printf("%s\n", arr1);
+//	return 0;
+//}
 
+char* my_strcat(char* dest, const char* src)
+{
+	char* ret = dest;
+	assert(dest && src);
+	while (*dest != '\0')//找出要追加到的目的地的结束位置'\0'
+	{
+		dest++;
+	}
+	//将来源字符串的所有字符追加在目的地字符串的后方
+	while (*dest++ = *src++)
+	{
+		;
+	}
+	return ret;//返回追加目的地的地址
+}
+int main()
+{
+	char arr1[30] = "hello ";
+	char arr2[] = "world";
+	my_strcat(arr1, arr2);
+	printf("%s\n", arr1);
+	return 0;
+}
