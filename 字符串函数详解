@@ -44,3 +44,71 @@ int main()
 	printf("%s\n", arr1);
 	return 0;
 }
+
+//#include<string.h>
+//#include<assert.h>
+//int my_strcmp(const char* p1, const char* p2)
+//{
+//	assert(p1 && p2);
+//	while (*p1 == *p2)
+//	{
+//		if (*p1 == '\0')//相同
+//			return 0;
+//		p1++;
+//		p2++;
+//	}
+//	//if (*p1 > *p2)
+//	//	return 1;//前者大
+//	//else
+//	//	return -1;//后者大
+//	return (*p1 - *p2);//返回差值
+//}
+//int main()
+//{
+//	char* p1 = "abcdef";
+//	//char* p2 = "abcdef";
+//	char* p2 = "abfjka";
+//	int ret = my_strcmp(p1, p2);
+//	printf("%d\n", ret);
+//	return 0;
+//}
+
+//int main()
+//{
+//	//char arr1[7] = "abcdef";
+//	//char arr2[] = "hello,world";
+//	//strncpy(arr1, arr2, 3);//hel def只将arr2的前三个字符拷贝到arr1中
+//	char arr1[10] = "abdefghij";
+//	char arr2[10] = "qwq";
+//	strncpy(arr1, arr2, 6);	//本来应该将arr2的前六个字符拷贝到arr1中，
+//							//但是arr2字符数量不够，所以缺少的字符均用'\0'替代,即arr1被改为"qwq'\0''\0''\0'hij'\0'"
+//	printf("%s\n", arr1);
+//	return 0;
+//}
+
+//模拟实现strncpy
+char* my_strncpy(char* dest, const char* src, int num)
+{
+	assert(dest && src);
+	char* start = dest;
+	while (num && (*dest++ = *src++))//要么需要拷贝的字符数量足够了(num==0)，要么将被拷贝对象src的字符全部(包括'\0')已经拷贝到了dest
+	{
+		num--;
+	}
+	//此时可能num为0，也可能num!=0但是src已经将所有字符(包括'\0')拷贝到了dest中
+
+	if (num)//先看num是否为0
+		while (--num)	//若不为0，说明被拷贝字符串字符个数不足，应在后补上'\0'
+						//但是因为此种情况下 上边while结束时，已经将被拷贝对象src的'\0'拷贝到dest了,不过num并未变化
+						//所以应先将num-1再进行判断是否需要额外补'\0'
+			*dest++ = '\0';
+	return start;//返回拷贝完后的字符串地址
+}
+int main()
+{
+	char arr1[10] = "abcdefg";
+	char arr2[] = "hello world";
+	my_strncpy(arr1, arr2, 5);
+	printf("%s\n", arr1);
+	return 0;
+}
