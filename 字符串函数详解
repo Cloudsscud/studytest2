@@ -149,8 +149,21 @@ char* my_strstr(const* p1, const char* p2)
 			return cur;//找到子串
 		}
 		s1++;
+
+		//优化
+		while (*s1 != '\0' && *s2 != '\0' && *s1++ == *s2)//先判断s1对应的字符与s2对应的是否相等,若不等s1后移一个字符
+		{
+			s2++;//若相等再让s2后移
+		}
+		if (*s2 == '\0')
+		{
+			return cur;//找到子串
+		}
+		s2 = p2;//判断完之后复原子串
+		cur = s1;
+
 	}
-	return NULL;//没有子串
+	return NULL;//没有子串	
 }
 
 int main()
