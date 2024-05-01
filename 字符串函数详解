@@ -127,13 +127,13 @@ int main()
 //	return 0;
 //}
 
-char* my_strstr(const* p1, const char* p2)
+char* my_strstr(const char* p1, const char* p2)
 {
 	assert(p1 &&  p2);
-	char* s1 = p1;
-	char* s2 = p2;
-	char* cur = p1;
-	if (*p2 == '\0')
+	char* s1 = (char*) p1;//要使用const保护的指针时,要用强制类型转换
+	char* s2 = (char*)p2;
+	char* cur = s1;
+	if (!*p2)
 		return p1;
 	while (*cur)
 	{
@@ -151,15 +151,15 @@ char* my_strstr(const* p1, const char* p2)
 		s1++;
 
 		//优化
-		while (*s1 != '\0' && *s2 != '\0' && *s1++ == *s2)//先判断s1对应的字符与s2对应的是否相等,若不等s1后移一个字符
+		while (!*s1 && !*s2 && *s1++ == *s2)//先判断s1对应的字符与s2对应的是否相等,若不等s1后移一个字符
 		{
 			s2++;//若相等再让s2后移
 		}
-		if (*s2 == '\0')
+		if (!*s2)
 		{
 			return cur;//找到子串
 		}
-		s2 = p2;//判断完之后复原子串
+		s2 = (char*)p2;//判断完之后复原子串
 		cur = s1;
 
 	}
