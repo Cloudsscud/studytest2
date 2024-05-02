@@ -179,3 +179,18 @@ int main()
 		printf("子串位置%s", ret);
 	return 0;
 }
+
+//strtok——分割字符串
+int main()
+{
+	char arr[] = "23465.163@qq.com";
+	char* p = ".@";
+	char* test[1024] = {0};
+	strcpy(test, arr);//因为strtok使用时会修改字符串的符号，所以要拷贝一份临时字符串
+	char* ret = NULL;
+	for (ret = strtok(test, p); ret != NULL; ret = strtok(NULL, p))
+	{
+		printf("%s\n", ret);
+	}
+	return 0;
+}
