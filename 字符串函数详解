@@ -194,3 +194,40 @@ int main()
 	}
 	return 0;
 }
+
+//#include<string.h>
+//#include<errno.h>
+////错误码与其对应的错误信息
+////	0-No error
+////	1-Operation not permitted
+////	2-No such file or directory
+////	...
+////errno是全局的错误码的变量
+////当C语言的库函数在使用时出现错误，则会将对应的错误码赋值给errno
+//int main()
+//{
+//	//char* p = strerror(2);
+//	//printf("%s\n", p);
+//	FILE* pf = fopen("test.txt", "r");//操作一个叫"test.txt"的文件，方式是读取"r",返回类型是FILE*存放在pf中
+//	if (pf == NULL)//空指针说明读取失败
+//		printf("%s\n", strerror(errno));//输出失败的原因(错误码对应的错误信息)
+//	else
+//		printf("open file succes\n");
+//	return 0;
+//}
+
+#include<ctype.h>
+int main()
+{
+	char arr[] = "I am LeaRNinG C prIMe plus";
+	//将该字符串全转为小写
+	int i = 0;
+	while (arr[i])
+	{
+		if (isupper(arr[i]))//判断是否为大写
+			arr[i] = tolower(arr[i]);//若大写则改为小写
+		i++;
+	}
+	printf("%s\n", arr);
+	return 0;
+}
