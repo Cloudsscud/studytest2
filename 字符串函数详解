@@ -251,29 +251,43 @@ void* my_memcpy(void* dest,const void* src,size_t sz)
 	}
 	return ret;
 }
-int main()
-{
-	//struct Stu s1[] = { {"张三",20},{"李四",19} };
-	//struct Stu s2[5] = {0};
-	////my_memcpy(s2,s1,sizeof(s1));
-	////memcpy(s2, s1, sizeof(s1));
-	//printf("%s\n", s1->name);
-	//printf("%d\n", s1->age);
-	//printf("%s\n", s2->name);
-	//printf("%d\n", s2->age);
+//int main()
+//{
+//	//struct Stu s1[] = { {"张三",20},{"李四",19} };
+//	//struct Stu s2[5] = {0};
+//	////my_memcpy(s2,s1,sizeof(s1));
+//	////memcpy(s2, s1, sizeof(s1));
+//	//printf("%s\n", s1->name);
+//	//printf("%d\n", s1->age);
+//	//printf("%s\n", s2->name);
+//	//printf("%d\n", s2->age);
+//
+//	int i = 0;
+//	int arr1[] = { 1,2,3,4,5,6,7,8,9,10 };//将1-5拷贝到3-7的位置
+//	//int arr2[10] = { 0 };//浪费空间
+//	//my_memcpy(arr2, arr1, sizeof(arr1));
+//	////my_memcpy(arr1 + 2, arr1, 20);
+//	//my_memcpy(arr1+2, arr2, 20);
+//	//memmove(arr1 + 2, arr1, 20);//处理内存重叠的拷贝
+//	my_memmove(arr1 + 6, arr1, 20);
+//	//C标准中，	memcpy只需拷贝内存不重叠的情况
+//	//			memmove拷贝的是内存重叠的情况
+//	for (i = 0; i < (sizeof(arr1)/sizeof(arr1[0])); i++)
+//	{
+//		printf("%d ",arr1[i]);
+//	}
+//	return 0;
+//}
 
-	int i = 0;
-	int arr1[] = { 1,2,3,4,5,6,7,8,9,10 };//将1-5拷贝到3-7的位置
-	int arr2[10] = { 0 };
-	//my_memcpy(arr2, arr1, sizeof(arr1));
-	////my_memcpy(arr1 + 2, arr1, 20);
-	//my_memcpy(arr1+2, arr2, 20);
-	memmove(arr1 + 2, arr1, 20);//处理内存重叠的拷贝
-	//C标准中，	memcpy只需拷贝内存不重叠的情况
-	//			memmove拷贝的是内存重叠的情况
-	for (i = 0; i < (sizeof(arr1)/sizeof(arr1[0])); i++)
-	{
-		printf("%d ",arr1[i]);
-	}
-	return 0;
-}
+//#include<string.h>
+//int main()
+//{
+//	//int arr1[] = { 1,4,5,6,3,7 };
+//	//int arr2[] = { 1,4,1,5,6,4,8 };
+//	//printf("%d\n", memcmp(arr1, arr2, 12));//比较的是从arr1，arr2往后的多少个字节
+//	/*char arr[10] = { 0 };
+//	memset(arr, '#', 8);*/
+//	int arr[10] = { 0 };
+//	memset(arr, 1, 9);//操作对象是字节
+//	return 0;
+//}
