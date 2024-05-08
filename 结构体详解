@@ -1,1 +1,46 @@
+//struct Stu
+//{
+//	char name[20];
+//	int tel[20];
+//}a,b,c;//此处的a，b，c为全局结构体变量
+//
+//struct
+//{
+//	char name[20];
+//	int tel[20];
+//}sa;//匿名结构体类型
+//struct
+//{
+//	char name[20];
+//	int tel[20];
+//}*psa;
+//
+//int main()
+//{
+//	struct Stu s1;//s1为局部结构体变量
+//
+//	psa = &sa;//虽然两者的结构体类型相似，但是编译器会将两者认作不同的结构体类型
+//	return 0;
+//}
 
+//创建一个链表从s1依次到s3
+struct s1
+{
+	int num;
+	struct s2* s2;
+};
+struct s2
+{
+	int num2;
+	struct s3* s3_end;
+};
+
+struct s3
+{
+	int num3_end;
+};
+int main()
+{
+
+	return 0;
+}
