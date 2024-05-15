@@ -291,3 +291,22 @@ void* my_memcpy(void* dest,const void* src,size_t sz)
 //	memset(arr, 1, 9);//操作对象是字节
 //	return 0;
 //}
+
+
+//找出最大的字符数组
+#include<string.h>
+int main()
+{
+	char arr[20] = { 0 };
+	char arr1[] = "abcd";
+	char arr2[] = "adcwa";
+	char arr3[] = "afsaf";
+	if (strcmp(arr1, arr2) > 0)
+		strcpy(arr, arr1);
+	else
+		strcpy(arr, arr2);
+	if (strcmp(arr, arr3) < 0)
+		strcpy(arr, arr3);
+	printf("%s\n", arr);
+	return 0;
+}
