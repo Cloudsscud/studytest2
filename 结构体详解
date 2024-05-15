@@ -111,12 +111,20 @@ struct S2
 	int c3;//对齐数为4字节，在偏移量为4的地方存放4字节，c1与c3之间浪费了3个字节的空间
 	char c2;//对齐数1字节，紧挨c3，此时总空间为1+3+4+1=9，不是最大对齐数4的整数倍，要浪费空间，补齐到其整数倍，即S2占用内存12字节
 };
-struct S3
-{
-	int c3;//存放方式与s1一样
-	char c1;
-	char c2;
-};
+
+//struct S3
+//{
+//	double a;//对齐数为8,从0开始,占8字节
+//	char b;//对齐数为1，占用第九字节的空间
+//	int c;//对齐数为4,从第十二字节开始，占用4字节;大小为16字节,是最大对齐数的整数倍,最后结构体S3空间大小为16字节
+//};
+
+//struct S4
+//{
+//	char a;//对齐数为1,占用1字节
+//	struct S3 s3;//因为vs默认对齐数为8,而s3大小为16,所以对齐数为8;从偏移量为8空间开始，占用16字节(a与s3之间的7个字节空间被浪费了)
+//	double c;//对齐数为8，从偏移量为8的整数倍(此为24)开始,占用8字节;此时大小为32，是最大对齐数的整数倍，所以S4大小为32字节
+//};
 //int main()
 //{
 //	struct S1 s1 = { 0 };
@@ -128,3 +136,78 @@ struct S3
 //	return 0;
 //}
 
+////设置默认对齐数
+//#pragma pack(4)
+//struct S
+//{
+//	char a;//对齐数为1，占一个字节
+//	double b;//4<8,该对齐数为4,从偏移量为4处开始，占8个字节;此时结构体占用总空间大小12字节（是最大对齐数4的整数倍）
+//};
+//#pragma pack()
+////取消设置的默认对齐数
+
+//struct S1
+//{
+//	char a;//对齐数为1，占一个字节
+//	double b;//8=8,该对齐数为8,从偏移量为8处开始，占8个字节;此时结构体占用总空间大小16字节（是最大对齐数8的整数倍）
+//};
+//int main()
+//{
+//	struct S s;
+//	struct S1 s1;
+//	printf("%d\n", sizeof(s));
+//	printf("%d\n", sizeof(s1));
+//	return 0;
+//}
+
+//offsetof (是宏)	offset偏移量
+//#include<stddef.h>
+//struct S 
+//{
+//	char a;//0
+//	int b;//4
+//	double c;//8
+//};
+//struct S 
+//{
+//	int a;//0
+//	double b;//8
+//	char c;//16
+//};
+//int main()
+//{
+//	//输出不同结构体成员的偏移量
+//	printf("%d\n", offsetof(struct S, a));
+//	printf("%d\n", offsetof(struct S, b));
+//	printf("%d\n", offsetof(struct S, c));
+//	return 0;
+//}
+
+//struct S
+//{
+//	char name;
+//	int age;
+//	double height;
+//};
+////要修改结构体内容，需要使用指针
+//void Init(struct S* tmp)
+//{
+//	//结构体指针更改成员内容时要用箭头->
+//	tmp->name = 'k';
+//	tmp->age = 12;
+//	tmp->height = 4.21;
+//}
+////输出,传址调用节约空间，但不安全
+//void Print(const struct S* tmp)
+//{
+//	printf("%c\n", tmp->name);
+//	printf("%d\n", tmp->age);
+//	printf("%lf\n", tmp->height);
+//}
+//int main()
+//{
+//	struct S s = { 0 };
+//	Init(&s);
+//	Print(&s);
+//	return 0;
+//}
