@@ -211,3 +211,33 @@ struct S2
 //	Print(&s);
 //	return 0;
 //}
+
+//位段(位:二进制位)
+struct S
+{
+	int a : 5;//先开辟了一个四字节的空间，a占用五个bit
+	int b : 2;//b相邻a占用2个bit
+	int c : 10;//c邻着b占用10个bit，此时所开辟的空间剩余15个bit，无法满足d的存放，被浪费了
+	int d : 30;//需要再申请一个四字节空间，存放d，占用30个bit，浪费2个bit
+};//所以位段S占用空间为4+4个字节
+
+struct S1
+{
+	char a : 4;
+	char b : 3;
+	char c : 3;
+	char d : 4;
+};
+int main()
+{
+	//struct S s;
+	struct S1 s1 = {0};
+	//printf("%d\n", sizeof(s));//八个字节
+	//printf("%d\n", sizeof(s1));//2byte
+	s1.a = 10;//1010	4位——1010——10——a
+	s1.b = 20;//10100	3位——100——4——4
+	s1.c = 7;//111		3位——111——7——7
+	s1.d = 3;//011		4位——0011——3——3
+	//s1申请空间时占用2字节，存放数据为4a 30(4a 1f)
+	return 0;
+}
