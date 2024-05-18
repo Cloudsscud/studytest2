@@ -241,3 +241,66 @@ int main()
 	//s1申请空间时占用2字节，存放数据为4a 30(4a 1f)
 	return 0;
 }
+
+////枚举类型
+//enum Sex
+//{
+//	//枚举的可能取值(常量,但可赋初始值,否则默认从0开始)
+//	MALE,//0
+//	FEMALE,//1
+//	SECRET//2
+//};
+////则Sex只有上述三种取值
+//
+//enum Direction
+//{
+//	up,//0
+//	low,//1			//不受left赋值影响
+//	left=0,//若中间赋值为0，则其之前不受影响(按默认值)，只影响之后的
+//	right//1
+//};
+//enum Color
+//{
+//	//红绿蓝
+//	RED = 2,//2
+//	GREEN = 4,//4
+//	BLUE //5		//若未赋初始值，则在后方延续(+1)
+//};
+//
+//int main()
+//{
+//	enum Sex s = FEMALE;
+//	//enum Color c = 4;//c可以,但c++不行			枚举赋值应在枚举类型内赋值
+//	printf("%d\n", s);
+//	int ret1 = s;//可以(c/c++)将枚举类型变量的值赋值到int类型中
+//	int ret2 = FEMALE;//枚举类型的可能取值是可以(c/c++)直接存放在int类型中的
+//	//printf("%d\n", c);
+//	printf("%d\n", ret1);
+//	printf("%d\n", ret2);
+//	printf("%d %d %d\n", MALE,FEMALE,SECRET);
+//	printf("%d %d %d %d\n", up,low,left,right);
+//	printf("%d %d %d", RED,GREEN,BLUE);
+//	return 0;
+//}
+
+//联合体(共用体)		（共用同一块空间）=>（不能同时存在、改一个,另一个也会被改）
+union Un
+{
+	char a[5];//数组看作几个该类型元素，所以对齐数为1，占用5个字节空间
+	int b;//对齐数为4    占用4个字节空间
+};//所以该联合体  共用了5个字节空间  不是最大对齐数（4）的整数倍，所以要浪费3个字节空间，使该联合体字节大小为8个字节
+
+int main()
+{
+	union Un u;
+	//u.a = 12;
+	//u.b = 10;
+	//printf("%d\n", u.a);
+	//printf("%d\n", u.b);
+	//printf("\n");
+	printf("%d\n", sizeof(u));
+	//printf("%p\n", &u);
+	//printf("%p\n", &(u.a));
+	//printf("%p\n", &(u.b));
+	return 0;
+}
