@@ -1,0 +1,71 @@
+//课堂作业
+//输入若干个国家的英文名称，按从小到大的次序排序后输出
+#include<stdio.h>
+#include<string.h>
+#include<assert.h>
+
+//输入国家英文名称
+void Input(char* arr[][20],int* num)
+{
+	assert(arr);
+	printf("输入国家的英文名称--输入q提前结束,或达到10个自动结束\n");
+	int i = 0;
+	do
+	{
+		printf("%d、", i+1);
+		scanf("%s", arr[i]);
+		if (strcmp(arr[i],"q") == 0)
+			break;
+		i++;
+		(*num)++;
+	} while (*num != 10);
+}
+
+//排序
+void Sort(char* arr[][20],int num)
+{
+	assert(arr);
+	int i = 0;
+	int j = 0;
+	char cmp[20] = "0";
+	for (i = 0; i <num; i++)
+	{
+		for (j = 0; j<num-i-1; j++)
+		{
+			if (strcmp(arr[j], arr[j + 1]) > 0)//前边大往后排
+			{
+				strcpy(cmp, arr[j + 1]);
+				strcpy(arr[j+1], arr[j]);
+				strcpy(arr[j], cmp);
+			}
+		}
+	}
+}
+
+//输出
+void Print(const char* arr[][20], int num)
+{
+	assert(arr);
+	int i = 0;
+	if(num!=0)
+		printf("排序后\n");
+	for (i = 0; i < num; i++)
+	{
+		printf("%d、%s\n", i+1, *arr);
+		arr++;
+	}
+}
+int main()
+{
+	//上限10个国家,最长20个字母
+	char arr[10][20] = { 0 };
+	//记录输入国家的数量
+	int num = 0;
+	//输入
+	Input(arr,&num);
+	//排序
+	Sort(arr,num);
+	//输出
+	Print(arr,num);
+	return 0;
+}
