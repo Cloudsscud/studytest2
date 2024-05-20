@@ -1,1 +1,42 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<errno.h>
+int main()
+{
+	//变长数组
+	//int n = 0;
+	//scanf("%d", &n);
+	//int arr[n];//C99标准支持，但大部分编译器不支持
+	
+	//malloc使用
+	//malloc(申请的空间大小)，返回所开辟空间的首地址,类型为void*
+	//但当内存不足时会开辟失败，返回一个空指针NULL
+	
+	//比如开辟一个十字节的空间
+	int* p = (int*)malloc(10 * sizeof(int));
+	if (p == NULL)
+		//输出错误原因
+		printf("%s\n", strerror(errno));
+	else
+	{
+		//使用所开辟的空间
+		int i = 0;
+		for (i = 0; i < 10; i++)
+		{
+			*(p + i) = i;
+		}
+		for (i = 0; i < 10; i++)
+		{
+			printf("%d ", *(p + i));
+		}
+	}
+	//动态申请的空间使用完后，应该归还给操作空间
+	free(p);//free释放的时动态开辟的空间
+	//注意,虽然归还了p对应的空间，但是那部分空间的信息还被保存在内存中，也就是可以通过p再次对那部分信息进行操作，不安全
+	p = NULL;
+	//需要自行销毁指针p
 
+	return 0;
+}
