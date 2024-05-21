@@ -40,3 +40,69 @@ int main()
 
 	return 0;
 }
+
+//calloc
+//int main()
+//{
+//	//calloc(元素的个数num，元素的大小size)
+//	//申请num个大小为size的空间，并初始化为0，返回该空间的地址
+//	int* p = calloc(10, sizeof(int));
+//	//开辟空间后便应该判断是否开辟成功
+//	if (p == NULL)
+//		printf("%s\n", strerror(errno));
+//	else
+//	{
+//		int i = 0;
+//		for (i = 0; i < 10; i++)
+//		{
+//			printf("%d ", *(p + i));
+//		}
+//	}
+//	free(p);
+//	p = NULL;
+//	return 0;
+//}
+
+//realloc
+//realloc(要增加或缩减空间的地址，最终空间大小),返回值是新空间地址
+//注意:在调整空间大小时，	如果旧空间后的空闲空间大小不足，则会开辟一个完整的新空间，将旧空间的值传到新空间对应位置，并将旧空间释放
+//											防止非法访问
+//						若旧空间后的空闲空间大小充足，则直接在后方调整
+//另外，假如开辟新空间失败，则会返回NULL，所以不能用旧空间的指针直接接收新空间,防止旧空间直接消失
+int main()
+{
+	int i = 0;
+	//先申请个20字节，5个整形
+	int* p = (int*)malloc(20);
+	if (p == NULL)
+		printf("%s\n", strerror(errno));
+	else
+	{
+		for (i = 0; i < 5; i++)
+		{
+			*(p + i) = i;
+		}
+	}
+	/*for (i = 0; i < 5; i++)
+	{
+		printf("%d ", *(p + i));
+	}*/
+	//我现在觉得5个整形不够，需要增加其长度,假设共需要10个整形(40字节)
+	//用realloc调整所开辟的内存空间
+	int* p2 = realloc(p, 40);
+	//p = realloc(p, 40);//可以使用，但风险很大(比如非法访问、p成为NULL)
+	if(p2!=NULL)
+	{
+		p = p2;
+		p2 = NULL;
+		for (i = 5; i < 10; i++)
+			*(p + i) = i;
+		for (i = 0; i < 10; i++)
+		{
+			printf("%d ", *(p + i));
+		}
+	}
+	free(p);
+	p = NULL;
+	return 0;
+}
