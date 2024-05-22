@@ -106,3 +106,79 @@ int main()
 	p = NULL;
 	return 0;
 }
+
+//错误分析
+// 1、
+//void GetMem(char* p)
+//{
+//	p = (char*)malloc(40);	//函数内部申请空间，只能在函数内部使用
+//							//并且在函数返回时未释放，且无法找回这部分空间，造成内存泄漏
+//}
+// 
+//void Test()
+//{
+//	char* str = NULL;
+//	GetMem(str);//此为传值操作(str与p均为一级指针)，返回后str无指向内容
+//	strcpy(str, "Hello World");//程序崩溃
+//	printf(str);
+//	return 0;
+//}
+
+//改(1)
+//void GetMem(char** p)
+//{
+//	*p = (char*)malloc(40);
+//}
+//void Test()
+//{
+//	char* str = NULL;
+//	GetMem(&str);//进行传址操作
+//	strcpy(str, "Hello World");
+//	printf(str);
+//	//释放开辟的空间
+//	free(str);
+//	str = NULL;
+//}
+
+//改(2)
+//char* GetMem(char* p)//让改变的内容可以返回
+//{
+//	return (char*)malloc(40);
+//}
+//void Test()
+//{
+//	char* str = NULL;
+//	str = GetMem(str);
+//	strcpy(str, "Hello World");
+//	printf(str);
+//	//释放开辟的空间
+//	free(str);
+//	str = NULL;
+//}
+//int main()
+//{
+//	Test();
+//	return 0;
+//}
+
+//2、
+//返回栈空间地址问题
+// 栈区上申请的空间会自动归还给操作系统
+// 堆区不会自行归还，需使用free归还
+//char* GetMem(void)
+//{
+//	//char a[] = "Hello World";//在栈区上申请一个空间,返回该空间的地址，但返回时该空间需要被归还给系统，则非法访问
+//	static char a[] = "Hello World";//用static延长其生命周期即可 静态区
+//	return a;
+//}
+//void Test()
+//{
+//	char* str = NULL;
+//	str = GetMem();
+//	printf(str);
+//}
+//int main()
+//{
+//	Test();
+//	return 0;
+//}
