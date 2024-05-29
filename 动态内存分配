@@ -182,3 +182,87 @@ int main()
 //	Test();
 //	return 0;
 //}
+
+//使用柔性数组
+//struct S
+//{
+//	char a;
+//	int arr[];
+//};
+
+//struct S
+//{
+//	int num;
+//	int arr[0];//此为一个柔性数组，在计算该结构体大小时，不考虑柔性数组大小（柔性数组可改变大小）
+//};
+//int main()
+//{
+//	//struct S s;
+//	//printf("%d ", sizeof(s));//4
+//	//如果我想要数组含五个元素
+//	struct S* ps = (struct S*)malloc(sizeof(struct S)+5*sizeof(int));
+//	ps->num = 100;
+//	int i = 0;
+//	for (i = 0; i < 5; i++)
+//	{
+//		ps->arr[i] = i;
+//	}
+//	for (i = 0; i < 5; i++)
+//		printf("%d ", ps->arr[i]);
+//	printf("\n");
+//	//现在我想要10个元素
+//	struct S* ptr = (struct S*)realloc(ps, sizeof(struct S) + 10 * sizeof(int));
+//	if (ptr != NULL)
+//	{
+//		ps = ptr;
+//	}
+//	for (i = 5; i < 10; i++)
+//	{
+//		ps->arr[i] = i;
+//	}
+//	for (i = 0; i < 10; i++)
+//		printf("%d ", ps->arr[i]);
+//	free(ps);
+//	return 0;
+//}
+
+////使用指针
+//struct S
+//{
+//	int num;
+//	int* arr;
+//};
+//int main()
+//{
+//	struct S* ps = (struct S*)malloc(sizeof(struct S));
+//	ps->arr = (int*)malloc(5 * sizeof(int));
+//	int i = 0;
+//	for (i = 0; i < 5; i++)
+//	{
+//		*(ps->arr+i) = i;
+//		printf("%d ", *(ps->arr + i));
+//	}
+//	printf("\n");
+//	//扩大指针指向空间
+//	int* ptr = realloc(ps->arr, 10 * sizeof(int));
+//	if (ptr != NULL)
+//		ps->arr = ptr;
+//	for (i = 5; i < 10; i++)
+//	{
+//		*(ps->arr+i) = i;
+//	}
+//	for (i = 0; i < 10; i++)
+//	{
+//		printf("%d ", *(ps->arr + i));
+//	}
+//	free(ps->arr);
+//	ps->arr = NULL;
+//	free(ps);
+//	ps = NULL;
+//	return 0;
+//}
+
+//比较：
+//1.指针方式使用多个malloc，就要对应多个free，易出现错误
+//2.malloc越多，产生的内存碎片越多，效率越低
+//3.用柔性数组，开辟的空间是连续的，内存访问效率高（局部性原理：cpu在访问存储器时，会有更大概率先访问连续的内存区域）
