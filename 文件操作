@@ -1,1 +1,49 @@
 
+#define _CRT_SECURE_NO_WARNINGS
+#include<errno.h>
+#include<stdio.h>
+#include<string.h>
+//int main()
+//{
+//	//操作文件	fopen（文件名，操作方式），返回一个文件指针 用FILE*接收,若操作失败，则返回NULL
+//	
+//	//只读打开text.txt
+//	//相对路径
+//	//fopen("text.txt", "r");
+//	
+//	//绝对路径
+//	//fopen("D:\\Project_C\\test\\test_12\\test_12", "r");//用\\防止进行转义
+//
+//	//  .  当前路径
+//	//  .. 上一级路径
+//	//fopen("../text.txt", "r");//在当前目录的 上一级目录的 text.txt文件
+//	FILE* pf = fopen("text.txt", "w");
+//	if (pf == NULL)
+//	{
+//		printf("%s\n", strerror(errno));
+//		return 0;
+//	}
+//	//打开文件
+//	//读文件
+//	//关闭文件
+//	fclose(pf);
+//	pf = NULL;
+//
+//	return 0;
+//}
+
+int main()
+{
+	FILE* pf = fopen("test.txt", "w");
+	if (pf != NULL)
+	{
+		fputc('h', pf);
+		fputc('e', pf);
+		fputc('l', pf);
+		fputc('l', pf);
+		fputc('o', pf);
+	}
+	fclose(pf);
+	pf = NULL;
+	return 0;
+}
