@@ -47,3 +47,34 @@ int main()
 	pf = NULL;
 	return 0;
 }
+
+//键盘&屏幕均为外部设备
+//键盘  标准输入设备 stdin
+//屏幕  标准输出设备 stdout
+//是一个程序默认打开的两个流设备
+
+//int main()
+//{
+//	int ch = fgetc(stdin);//从标准输入流 读取
+//	fputc(ch, stdout);//从标准输出流 输出
+//	return 0;
+//}
+
+int main()
+{
+	char arr[10] = { 0 };
+	int i = 0;
+	//FILE* pf = fopen("test.txt", "r");
+	FILE* pf = fopen("test.txt", "w");
+	if (pf == NULL)
+		return 0;
+	printf("请输入一行要读取的字符数:>");
+	scanf("%d", &i);
+	/*fgets(arr, i, pf);
+	printf("%s\n", arr);
+	fgets(arr, 10, pf);
+	printf("%s\n", arr);*/
+	fclose(pf);
+	pf = NULL;
+	return 0;
+}
