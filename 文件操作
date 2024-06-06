@@ -60,21 +60,53 @@ int main()
 //	return 0;
 //}
 
+struct S
+{
+	int num;
+	float score;
+	char arr[10];
+};
 int main()
 {
-	char arr[10] = { 0 };
-	int i = 0;
-	//FILE* pf = fopen("test.txt", "r");
-	FILE* pf = fopen("test.txt", "w");
-	if (pf == NULL)
-		return 0;
-	printf("请输入一行要读取的字符数:>");
-	scanf("%d", &i);
-	/*fgets(arr, i, pf);
-	printf("%s\n", arr);
-	fgets(arr, 10, pf);
-	printf("%s\n", arr);*/
-	fclose(pf);
-	pf = NULL;
+	//char arr[10] = { 0 };
+	//int i = 0;
+	////FILE* pf = fopen("test.txt", "r");
+	////FILE* pf = fopen("test.txt", "w");
+	//FILE* pf = fopen("txt.txt", "r");
+	////FILE* pf = fopen("test.txt", "a");
+	//if (pf == NULL)
+	//	return 0;
+	//读
+	//printf("请输入一行要读取的字符数:>");
+	//scanf("%d", &i);
+	//fgets(arr, i, pf);//首先有结束字符‘\0’,(只会显示i-1个字符)
+	//printf("%s\n", arr);//如果前一次输出时，那一行的后方还有剩余，则下一次输出时将那些剩余的看作首行
+	//puts(arr);
+	//fgets(arr, 1024, pf);//在屏幕上输出一行
+	//printf("%s\n", arr);
+	//puts(arr);
+
+	//覆盖写
+	//fputs("Hello ", pf);
+	//fputs("World", pf);
+
+	//追加写
+	//fputs("\nNO WARNINGS!\n", pf);
+
+	////对于结构体的格式化写
+	//struct S s = { 100,3.14f,"BIT" };
+	//fprintf(pf, "%d %lf %s", s.num, s.score, s.arr);
+
+	////格式化读取
+	//struct S s = { 0 };//接收从文件读取的内容
+	//fscanf(pf, "%d %f %s", &(s.num), &(s.score), s.arr);
+	//printf("%d %f %s", s.num, s.score, s.arr);
+
+	//标准输入输出流
+	struct S s = { 0 };
+	fscanf(stdin, "%d %f %s", &(s.num), &(s.score), s.arr);//从stdin接收，以""内的形式分别存放在目标内		(经尝试，空格可作为分割符)
+	fprintf(stdout, "%d %f %s", s.num, s.score, s.arr);
+	/*fclose(pf);
+	pf = NULL;*/
 	return 0;
 }
