@@ -110,3 +110,26 @@ int main()
 	pf = NULL;*/
 	return 0;
 }
+
+//sprintf  sscanf
+struct S
+{
+	char name[10];
+	int age;
+	int tel;
+};
+int main()
+{
+	char arr[30] = { 0 };
+	struct S s = { "abcdef",20,135467 };
+	struct S s1 = { 0 };
+
+	//将后方数据分别按照中间的格式（将格式化的数据）,以字符串的形式存放在前者内
+	sprintf(arr, "%s %d %d", s.name,s.age, s.tel);
+	printf("%s", arr);
+
+	//从字符串中读取格式化的数据并存放在后者内部
+	sscanf(arr, "%s %d %d", s1.name, &(s1.age), &(s1.tel));
+	printf("%s %d %d", s1.name, s1.age, s1.tel);
+	return 0;
+}
