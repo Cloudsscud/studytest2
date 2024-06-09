@@ -133,3 +133,30 @@ int main()
 	printf("%s %d %d", s1.name, s1.age, s1.tel);
 	return 0;
 }
+
+struct S
+{
+	char name[20];
+	int age;
+	float height;
+};
+int main()
+{
+	//struct S s = { "张三",20, 1.86f };//数据来源
+	//FILE* pf = fopen("txt.txt", "wb");
+
+	struct S tmp = { 0 };//存储数据
+	FILE* pf = fopen("txt.txt", "rb");
+	if (pf == NULL)
+		return 0;
+	////fwrite:以二进制形式写入文件
+	////fwrite(数据来源地址，数据的大小，存储最大个数，存入的文件地址)
+	//fwrite(&s, sizeof(struct S), 1, pf);
+
+	//fread:以二进制形式从文件读取数据
+	//fread(读取数据存放地址，数据大小，读取最大个数，所读文件地址)
+	fread(&tmp, sizeof(struct S), 1, pf);
+
+	printf("%s,%d,%.2lf\n", tmp.name, tmp.age, tmp.height);
+	return 0;
+}
