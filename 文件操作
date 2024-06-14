@@ -160,3 +160,62 @@ int main()
 	printf("%s,%d,%.2lf\n", tmp.name, tmp.age, tmp.height);
 	return 0;
 }
+
+////fseek(文件指针，偏移量(正向右，负向左)(是从当前位置移动的字节数)，当前位置)依据文件指针当前位置与偏移量来定位指针
+////SEEK_CUR  当前指针位置
+////SEEK_SET  文件起始位置  指向偏移量为1字节的元素
+////SEEK_END  文件末尾位置  经尝试，发现指向末尾处的'\0'
+//int main()
+//{
+//	FILE* pf = fopen("test.txt", "r");
+//	assert(pf);
+//	fseek(pf, -5, SEEK_END);
+//	int ch = fgetc(pf);
+//	printf("%c\n", ch);
+//
+//	int pos = ftell(pf);
+//	printf("%d\n", pos);
+//
+//	rewind(pf);//将文件指针所维护的位置指针恢复到文件的起始位置(经尝试，与SEEK_SET位置一样)
+//	ch = fgetc(pf);
+//	printf("%c\n", ch);
+//
+//	fclose(pf);
+//	pf = NULL;
+//	return 0;
+//}
+
+//feof()用于文件结束的判别
+//根据getc接收到-1 或 用gets接收到NULL，判断文本文件是否读取结束
+//根据实际返回值是否小于fread应该读取数目，判断二进制文件是否读取结束
+int main()
+{
+	int ch = 0;
+	//FILE* pf = fopen("test2.txt", "r");
+	FILE* pf = fopen("test.txt", "r");
+	if (!pf)//只读文件指针创建的判断
+	{
+		perror("test2.txt文件打开失败");//perror输出括号内的字符串，冒号：、空格 ，然后是最近的错误码对应的错误信息
+		return 0;
+	}
+
+	//getc当读取失败或读取结束，都会返回EOF
+	while ((ch = getc(pf)) != EOF)
+	{
+		putchar(ch);//正常使用时：每读取一个字符便输出一个字符
+	}
+	//读取结束
+	//判断结束原因
+	if (ferror(pf))//ferror 当文件读取失败时返回一个非0值，读取成功则为0
+	{
+		puts("读取失败\0");
+	}
+	else if (feof(pf))//feof()当遇到EOF时返回一个非0值
+	{
+		puts("读取结束\0");
+	}
+
+	fclose(pf);
+	pf = NULL;
+	return 0;
+}
