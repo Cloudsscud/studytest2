@@ -1,0 +1,24 @@
+bool hasCycle(struct ListNode *head)
+{
+    if(!head || !(head->next))  //链表至少有两段空间
+    {
+        return false;
+    }
+    struct ListNode* fast = head->next;
+    struct ListNode* slow = head;
+    while(head && fast && fast->next)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+        if(fast == slow)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+快慢指针法解析：假设环长为n，当慢指针进入环时，设快指针还需m∈N（0<m<n）才能与慢指针同时指向一处;
+              因为环有方向，所以m实际上指的是快指针到环入口处的距离；
+              那么现在就可以看作快指针在追慢指针，相距m，如果快指针比慢指针每次快1，那么最多需要m次前进，就可以保证快慢指针落在一处；
+              而如果快指针比慢指针每次快2及以上（或快指针每次前进3或更多），就有可能出现重复、无法在一处等情况；
+              综上慢指针走1，快指针走2更稳定
